@@ -1,38 +1,38 @@
-import { FETCH_GRADES_BEGIN, FETCH_GRADES_SUCCESS, FETCH_GRADES_FAILURE } from './actionTypes';
-import axios from 'axios';
+import { FETCH_GRADES_BEGIN, FETCH_GRADES_SUCCESS, FETCH_GRADES_FAILURE } from "./actionTypes";
+import axios from "axios";
 
 //Same logic as in courseActions
 
 export const fetchGradesBegin = () => (dispatch) => {
-    dispatch({
-        type: FETCH_GRADES_BEGIN
-    });
+	dispatch({
+		type: FETCH_GRADES_BEGIN,
+	});
 };
 
 export const fetchGradesSuccess = (response) => (dispatch) => {
-    dispatch({
-        type: FETCH_GRADES_SUCCESS,
-        data: response
-    });
+	dispatch({
+		type: FETCH_GRADES_SUCCESS,
+		data: response,
+	});
 };
 
 export const fetchGradesFailure = (error) => (dispatch) => {
-    dispatch({
-        type: FETCH_GRADES_FAILURE,
-        error: error
-    });
+	dispatch({
+		type: FETCH_GRADES_FAILURE,
+		error: error,
+	});
 };
 
 export const fetchGrades = (coursecode) => {
-    return (dispatch) => {
-        dispatch(fetchGradesBegin());
-        axios
-            .get('https://courses.victorjorgensen.com/api/courses/' + coursecode + '/grades/')
-            .then((response) => {
-                dispatch(fetchGradesSuccess(response.data)); //skal det være .data her?
-            })
-            .catch((error) => {
-                dispatch(fetchGradesFailure(error));
-            });
-    };
+	return (dispatch) => {
+		dispatch(fetchGradesBegin());
+		axios
+			.get("localhost:3001/api/courses/" + coursecode + "/grades/")
+			.then((response) => {
+				dispatch(fetchGradesSuccess(response.data)); //skal det være .data her?
+			})
+			.catch((error) => {
+				dispatch(fetchGradesFailure(error));
+			});
+	};
 };
