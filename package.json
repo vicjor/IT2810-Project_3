@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "axios": "^0.21.2",
-    "cypress": "^3.4.1",
+    "cypress": "^12.2.0",
     "express": "^4.17.3",
     "minimist": ">=1.2.6",
     "mongoose-paginate": "^5.0.3"
